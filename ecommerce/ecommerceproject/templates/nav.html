@@ -10,6 +10,21 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'shop:allProdCat' %}">Home</a>
         </li>
+        {% if user.is_authenticated %}
+									<li class="nav-item">{{user.username}}</li>
+									<li class="nav-item">
+                                    <a class="nav-link" href="{% url 'authapp:logout' %}" >Logout</a>
+                                    </li>
+									{% else %}
+    								<li class="nav-item">
+                                       <a class="nav-link" href="{% url 'authapp:register' %}">Sign Up</a>
+                                    </li>
+                                    <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'authapp:login' %}" >Sign In</a>
+                                    </li>
+
+
+									{% endif %}
         <li class="nav-item dropdown {% if 'shop' in request.path %} active {% endif %}">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           All products
